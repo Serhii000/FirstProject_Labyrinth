@@ -1,9 +1,11 @@
 #include "inc/LIB_FUN.h"
 
+
 int main()
 {
+	int menu_ret;
 
-    initscr();
+	 initscr();
 
     int y, x;
     getmaxyx(stdscr, y, x);
@@ -19,10 +21,22 @@ int main()
 
     startscreen();
 
-    menu();
-    
-
+	menu_ret =  menu();
+	if (menu_ret == 9)
+	{
+		level_one();
+	}
+	if (menu_ret == 12)
+	{
+		clear();
+		endwin();
+		return 0;
+	}
     endwin();
+
+   // ExitProgram();
+   // _nc_free_and_exit();
+	
 
     return 0;
 }

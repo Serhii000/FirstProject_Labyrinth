@@ -7,13 +7,17 @@
 #include <string.h>
 
 #define K_ENTER 13
-#define K_UP 27
-// #define K_DOWN 
-// #define K_LEFT
-// #define K_RIGTH
-// #define K_ESC 
+#define K_UP 65
+#define K_DOWN 66 
+#define K_LEFT 68
+#define K_RIGTH 67
+#define K_SPACE 32
+#define K_ESC 27
 
 void startscreen();
-void menu();
+int menu();
+void print_dev();
+void print_des();
+void level_one();
 
 #endif
