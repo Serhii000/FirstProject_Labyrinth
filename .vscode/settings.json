@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "lib_fun.h": "c",
-        "ncurses.h": "c"
-    }
-}
