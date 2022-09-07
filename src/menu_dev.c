@@ -10,5 +10,5 @@ void print_dev()
     mvprintw(9, 10, "We tried our best :)");
 
     refresh();
-    getchar();
+    getchar(); 
 }

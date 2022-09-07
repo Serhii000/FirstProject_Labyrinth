@@ -40,40 +40,33 @@ int menu()
         {
         case K_DOWN:
             if (y_pos < 12)
-            {
                 y_pos = y_pos + 1;
-            }
             break;
+
         case K_UP:
             if (y_pos > 9)
-            {
                 y_pos = y_pos - 1;
-            }
-            break;
+             break;
 
         case K_ENTER:
+            clear();
+
             if (y_pos == 12)
-            {
-                clear();
                 return 12;
-            }
+
             if (y_pos == 11)
-            {
-                clear();
                 print_dev();
-            }
+
             if (y_pos == 10)
-            {
-                clear();
                 print_des();
-            }
+
             if (y_pos == 9)
-            {
-                clear();
                 return 9;
-            }
         }
 
-        clear();
+        for ( int i = 9; i < 12; i++ )
+        {
+            mvprintw(i, 25, "   ");
+        }
     }
 }

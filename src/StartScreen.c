@@ -2,6 +2,8 @@
 
 void startscreen()
 {
+    int c = 5, mas_c = 0;
+    int key = 0;
 
     char **start = (char **)malloc(sizeof(char *) * 14);
 
@@ -20,8 +22,6 @@ void startscreen()
     start[12] = "################################          PRESS ENTER          ###########################################";
     start[13] = "##########################################################################################################";
 
-    int c = 5, mas_c = 0;
-
     while (c != 19)
     {
         mvprintw(c, 3, start[mas_c]);
@@ -30,8 +30,6 @@ void startscreen()
     }
 
     refresh();
-
-    int key = 0;
 
     while (key != K_ENTER)
     {

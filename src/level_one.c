@@ -1,5 +1,36 @@
 #include "../inc/LIB_FUN.h"
 
+void fog(int y, int x)
+{
+    int yup_fog = y - 4; // limited visibility implementation | реализация ограничения видимости
+    int ydown_fog = y + 4;
+    int xleft_fog = x - 7;
+    int xrigth_fog = x + 7;
+
+    while (yup_fog <= ydown_fog)
+    {
+        if (yup_fog < 2)
+            yup_fog = 2;
+
+        if (ydown_fog >= 22)
+            ydown_fog = 21;
+
+        if (xleft_fog < 2)
+            xleft_fog = 2;
+
+        if (xrigth_fog >= 85)
+            xrigth_fog = 84;
+
+        while (xleft_fog <= xrigth_fog)
+        {
+            mvprintw(yup_fog, xleft_fog, "%c", ' ');
+            xleft_fog++;
+        }
+
+        xleft_fog = x - 7;
+        yup_fog++;
+    }
+}
 char level_1()
 {
     char **labytinth = (char **)malloc(sizeof(char *) * 24);
@@ -53,39 +84,7 @@ char level_1()
 
     while (true)
     {
-        int yup = y_P - 4;
-        int ydown = y_P + 4;
-        int xleft = x_P - 7;
-        int xrigth = x_P + 7;
-
-        while (yup <= ydown)
-        {
-            if (yup < 2)
-            {
-                yup = 2;
-            }
-            if (ydown >= 22)
-            {
-                ydown = 21;
-            }
-            if (xleft < 2)
-            {
-                xleft = 2;
-            }
-            if (xrigth >= 85)
-            {
-                xrigth = 84;
-            }
-
-            while (xleft <= xrigth)
-            {
-                mvprintw(yup, xleft, "%c", ' ');
-                xleft++;
-            }
-
-            xleft = x_P - 7;
-            yup++;
-        }
+        fog(y_P, x_P);
 
         int y_up = y_P - 3;
         int y_down = y_P + 3;
@@ -95,14 +94,12 @@ char level_1()
         while (y_up < y_down)
         {
             if (y_up < 0)
-            {
                 y_up = 0;
-            }
+
             if (y_down > 23)
-            {
                 y_down = 23;
-            }
-            if (x_left >= 0) // условие когда значения в допустимых границах
+
+            if (x_left >= 0) // condition when values are within acceptable limits | условие когда значения в допустимых границах
             {
 
                 while (x_left <= x_rigth && x_rigth <= 86)
@@ -111,7 +108,7 @@ char level_1()
                     x_left++;
                 }
             }
-            if (x_left < 0) // условия когда границы сдвинуты влево
+            if (x_left < 0) // conditions when the borders are shifted to the left | условия когда границы сдвинуты влево
             {
                 x_left = 0;
 
@@ -121,7 +118,7 @@ char level_1()
                     x_left++;
                 }
             }
-            if (86 < x_rigth) // условия когда границы сдвинуты вправо.
+            if (86 < x_rigth) // conditions when the borders are shifted to the right | условия когда границы сдвинуты вправо.
             {
                 x_rigth = 86;
 
@@ -180,9 +177,8 @@ char level_1()
 
         case K_ENTER:
             if (labytinth[y_P][x_P] == 'K')
-            {
                 ex1t = true;
-            }
+
             if (ex1t == true)
             {
                 if (labytinth[y_P][x_P] == '=')
