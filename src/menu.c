@@ -2,7 +2,6 @@
 
 int menu()
 {
-
     int y_pos = 9;
     int key;
 
@@ -52,7 +51,7 @@ int menu()
             clear();
 
             if (y_pos == 12)
-                return 12;
+                return 0;
 
             if (y_pos == 11)
                 print_dev();

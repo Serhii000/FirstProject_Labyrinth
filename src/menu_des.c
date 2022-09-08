@@ -14,7 +14,7 @@ void print_des()
     mvprintw(14, 4, "- left: arrow to the left;");
     mvprintw(15, 3, "So, movement, as in all normal people.");
     mvprintw(16, 3, "There is also an (Enter) button. After all, we will have to somehow pick up the key and pull the door.");
-    mvprintw(18, 3, "And if you get bored, you can always exit the game by pressing the (e) button. (E) is the exit.");
+    mvprintw(18, 3, "And if you get bored, you can always exit the game by pressing the (e) button. (e) is the exit.");
     mvprintw(19, 3, "Of course, in each maze there is a button, thanks to which you can get out of it.");
     mvprintw(20, 3, " It's a labyrinth, suddenly you lose the way out...");
     mvprintw(21, 3, "In general, that's all.");
@@ -22,4 +22,5 @@ void print_des()
 
     refresh();
     getchar();
+    clear();
 }

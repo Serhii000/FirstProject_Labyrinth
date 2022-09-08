@@ -37,11 +37,11 @@ char level_1()
 
     labytinth[0] = "#######################################################################################";
     labytinth[1] = "#######################################################################################";
-    labytinth[2] = "##           #                       #           #                       #  K  #    =||";
+    labytinth[2] = "##           #                       #           #                       #     #    =||"; 
     labytinth[3] = "##           #                       #           #                       #     #    =||";
     labytinth[4] = "##     #     #     #############     #     #     #     #############     #     #     ##";
     labytinth[5] = "##     #     #     #           #           #           #           #           #     ##";
-    labytinth[6] = "##     #  k  #     #           #           #           #           #           #     ##";
+    labytinth[6] = "##     #     #     #           #           #           #           #           #     ##";
     labytinth[7] = "##     #######     #     #     #########################     #     #############     ##";
     labytinth[8] = "##     #           #     #     #                             #     #           #     ##";
     labytinth[9] = "##     #           #     #     #                             #     #           #     ##";
@@ -61,12 +61,12 @@ char level_1()
     labytinth[23] = "#######################################################################################";
 
     char player = 'P';
-
     int y_P = 21;
     int x_P = 2;
     int i = 2;
     int gc;
     bool ex1t = false;
+    bool lie = false;
 
     mvprintw(0, 0, labytinth[0]);
     mvprintw(1, 0, labytinth[1]);
@@ -83,14 +83,14 @@ char level_1()
     refresh();
 
     while (true)
-    {
+    {   
         fog(y_P, x_P);
 
         int y_up = y_P - 3;
         int y_down = y_P + 3;
         int x_left = x_P - 6;
         int x_rigth = x_P + 6;
-
+ 
         while (y_up < y_down)
         {
             if (y_up < 0)
@@ -98,10 +98,9 @@ char level_1()
 
             if (y_down > 23)
                 y_down = 23;
-
+            
             if (x_left >= 0) // condition when values are within acceptable limits | условие когда значения в допустимых границах
             {
-
                 while (x_left <= x_rigth && x_rigth <= 86)
                 {
                     mvprintw(y_up, x_left, "%c", labytinth[y_up][x_left]);
@@ -132,6 +131,12 @@ char level_1()
             y_up++;
         }
 
+        if (y_P < 7 && y_P > 2 && x_P > 7 && x_P < 13 && lie == false)
+                mvprintw(6,10,"%c", 'k');
+       
+        if (y_P < 7 && y_P > 1 && x_P > 72 && x_P < 80 && ex1t == false) 
+                mvprintw(2,76,"%c", 'K');
+           
         mvprintw(y_P, x_P, "%c", player);
         refresh();
 
@@ -176,9 +181,12 @@ char level_1()
                 continue;
 
         case K_ENTER:
-            if (labytinth[y_P][x_P] == 'K')
-                ex1t = true;
+            if (y_P == 6 && x_P == 10)
+                lie = true;
 
+            if (y_P == 2 && x_P == 76)
+                ex1t = true;
+                
             if (ex1t == true)
             {
                 if (labytinth[y_P][x_P] == '=')
@@ -194,9 +202,6 @@ char level_1()
         refresh();
 
         if (gc == 'e')
-        {
-            clear();
-            return 'e';
-        }
+            return 0;
     }
 }
