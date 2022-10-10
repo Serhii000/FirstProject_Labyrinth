@@ -1,12 +1,33 @@
 CC=gcc
 CFLAGS=-lncurses
-LDFLAGS=
-SOURCES=main.c src/StartScreen.c src/menu.c src/menu_des.c src/menu_dev.c src/level_one.c src/endingscr.c 
-OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=labyrinth
 
-all: $(SOURCES) $(EXECUTABLE)
-    
-$(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(OBJECTS) $(CFLAGS) -o $(EXECUTABLE)
+SRCD=src/
+SRC=$(addprefix $(SRCD), *.c)
 
+OBJD=obj/
+OBJ=$(addprefix $(OBJD), *.o)
+
+EXE=labyrinth
+
+objects:
+	mkdir $(OBJD) 
+	$(CC) $(SRC) $(CFLAGS) -c
+	mv *.o $(OBJD)
+
+	$(CC) main.c $(CFLAGS) -c
+
+exe:
+	$(CC) main.o $(OBJ) $(CFLAGS) -o $(EXE)
+
+install: clean objects exe
+
+
+clean:
+	rm -rf $(OBJD) main.o
+
+
+reinstall: clean install
+
+delete: clean
+	rm labyrinth
+	
